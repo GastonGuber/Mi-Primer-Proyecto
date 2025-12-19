@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=MaquinaExpendedora
+comment1.params=
+comment1.target=MaquinaExpendedora()
+comment2.params=
+comment2.target=void\ cafe()
+comment3.params=
+comment3.target=void\ recargarCafe()
+comment4.params=
+comment4.target=int\ vasosCafe()
+numComments=5
