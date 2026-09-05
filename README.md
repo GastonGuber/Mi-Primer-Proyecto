@@ -3,9 +3,6 @@
 [![Build](https://github.com/GastonGuber/Mi-Primer-Proyecto/actions/workflows/build.yml/badge.svg)](https://github.com/GastonGuber/Mi-Primer-Proyecto/actions/workflows/build.yml)
 [![Release](https://img.shields.io/github/v/release/GastonGuber/Mi-Primer-Proyecto)](https://github.com/GastonGuber/Mi-Primer-Proyecto/releases/latest)
 
-![Maquina standard](Cafetera/maquina_cafetera_logo.png)
-![Maquina Pro](Cafetera/maquina_cafetera_pro_logo.png)
-
 ---
 
 ## Espanol

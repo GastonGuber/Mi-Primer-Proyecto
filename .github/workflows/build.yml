@@ -28,7 +28,8 @@ jobs:
         run: javac -encoding UTF-8 -d build/out Cafetera/*.java
 
       - name: Crear MANIFEST.MF
-        run: printf 'Main-Class: Main\n' > build/MANIFEST.MF
+        run: |
+          printf 'Main-Class: Main\n' > build/MANIFEST.MF
 
       - name: Empaquetar Cafetera.jar
         run: jar cfm build/Cafetera.jar build/MANIFEST.MF -C build/out . -C Cafetera maquina_cafetera_logo.png -C Cafetera maquina_cafetera_pro_logo.png -C Cafetera Cafe.png -C Cafetera Carioca.png -C Cafetera ImagenBlanco.png
