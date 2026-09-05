@@ -1,0 +1,55 @@
+name: Build y Release
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 8
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '8'
+
+      - name: Compilar
+        run: javac -encoding UTF-8 -d build/out Cafetera/*.java
+
+      - name: Crear MANIFEST.MF
+        run: printf 'Main-Class: Main\n' > build/MANIFEST.MF
+
+      - name: Empaquetar Cafetera.jar
+        run: jar cfm build/Cafetera.jar build/MANIFEST.MF -C build/out . -C Cafetera maquina_cafetera_logo.png -C Cafetera maquina_cafetera_pro_logo.png -C Cafetera Cafe.png -C Cafetera Carioca.png -C Cafetera ImagenBlanco.png
+
+      - name: Publicar artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: Cafetera.jar
+          path: build/Cafetera.jar
+          retention-days: 30
+
+      - name: Crear Release con tag (v1.0, v2.0, ...)
+        if: startsWith(github.ref, 'refs/tags/')
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" build/Cafetera.jar --repo "$GITHUB_REPOSITORY" --generate-notes
+
+      - name: Actualizar release 'latest' en cada push a main
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release delete latest --repo "$GITHUB_REPOSITORY" --yes || true
+          gh release create latest build/Cafetera.jar --repo "$GITHUB_REPOSITORY" --title "Ultima version" --notes "La version mas reciente del JAR. Descarga el archivo Cafetera.jar y ejecutalo con: java -jar Cafetera.jar" --latest

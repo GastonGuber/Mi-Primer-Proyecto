@@ -64,6 +64,13 @@ class GUIMaquinaExpendedora extends JFrame{
     }
    
     //Metodos
+    private ImageIcon cargarImagen(String nombreArchivo){
+        java.net.URL url = getClass().getResource("/" + nombreArchivo);
+        if (url != null) {
+            return new ImageIcon(url);
+        }
+        return new ImageIcon(nombreArchivo);
+    }
     public void armarPanelExpendedora(){
         panelExpendedora=new JPanel();
         Color beige= new Color(230, 230, 200);//Declaramos el color especifico mediante RGB
@@ -75,7 +82,7 @@ class GUIMaquinaExpendedora extends JFrame{
         Cartel1.setBackground(beige);
         Cartel1.setLayout(new FlowLayout(FlowLayout.CENTER));
         logo1=new JLabel();
-        ImageIcon iconoOriginal = new ImageIcon("maquina_cafetera_logo.png");
+        ImageIcon iconoOriginal = cargarImagen("maquina_cafetera_logo.png");
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(270, 200, Image.SCALE_SMOOTH);
         logo1.setIcon(new ImageIcon(imagenEscalada));
         panelExpendedora.add(logo1);
@@ -118,7 +125,7 @@ class GUIMaquinaExpendedora extends JFrame{
         Cliente.setBackground(beige);
         Cliente.setLayout(new FlowLayout());
         FTCafe=new JLabel();
-        ImageIcon iconoOriginal = new ImageIcon("ImagenBlanco.png");
+        ImageIcon iconoOriginal = cargarImagen("ImagenBlanco.png");
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         FTCafe.setIcon(new ImageIcon(imagenEscalada));
         CartelCafe=new JLabel("");
@@ -146,7 +153,7 @@ class GUIMaquinaExpendedora extends JFrame{
         Cliente2.setBackground(marronOscuro);
         Cliente2.setLayout(new FlowLayout());
         FTCafe2=new JLabel();
-        ImageIcon iconoOriginal = new ImageIcon("ImagenBlanco.png");
+        ImageIcon iconoOriginal = cargarImagen("ImagenBlanco.png");
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
         FTCafe2.setIcon(new ImageIcon(imagenEscalada));
         CartelCafe2=new JLabel("");
@@ -168,7 +175,7 @@ class GUIMaquinaExpendedora extends JFrame{
         Cartel2.setBackground(marronOscuro);
         Cartel2.setLayout(new FlowLayout(FlowLayout.CENTER));
         logo2=new JLabel();
-        ImageIcon iconoOriginal = new ImageIcon("maquina_cafetera_pro_logo.png");
+        ImageIcon iconoOriginal = cargarImagen("maquina_cafetera_pro_logo.png");
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(270, 200, Image.SCALE_SMOOTH);
         logo2.setIcon(new ImageIcon(imagenEscalada));
         Cartel2.add(logo2);
@@ -244,7 +251,7 @@ class GUIMaquinaExpendedora extends JFrame{
             if(ME.vasosCafe()>=1){
                 ME.cafe();
                 CartelCafe.setText("Aqui tiene su Cafe");
-                ImageIcon iconoOriginal = new ImageIcon("Cafe.png");
+                ImageIcon iconoOriginal = cargarImagen("Cafe.png");
                 Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
                 FTCafe.setIcon(new ImageIcon(imagenEscalada));
             }else{
@@ -261,7 +268,7 @@ class GUIMaquinaExpendedora extends JFrame{
     private class OyenteRetirarCaf implements ActionListener{
         public void actionPerformed(ActionEvent event){
             CartelCafe.setText("");
-            ImageIcon iconoOriginal = new ImageIcon("ImagenBlanco.png");
+            ImageIcon iconoOriginal = cargarImagen("ImagenBlanco.png");
             Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
             FTCafe.setIcon(new ImageIcon(imagenEscalada));
             habilitarBotones();
@@ -273,7 +280,7 @@ class GUIMaquinaExpendedora extends JFrame{
             if(MaquinaPro.vasosCafe()>=1){
                 MaquinaPro.cafe();
                 CartelCafe2.setText("Aqui tiene su Cafe.");
-                ImageIcon iconoOriginal = new ImageIcon("Cafe.png");
+                ImageIcon iconoOriginal = cargarImagen("Cafe.png");
                 Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
                 FTCafe2.setIcon(new ImageIcon(imagenEscalada));
             }else{
@@ -292,7 +299,7 @@ class GUIMaquinaExpendedora extends JFrame{
             if(MaquinaPro.vasosCarioca()>=1){
                 MaquinaPro.carioca();
                 CartelCafe2.setText("Aqui tiene su Cafe Carioca.");
-                ImageIcon iconoOriginal = new ImageIcon("Carioca.png");
+                ImageIcon iconoOriginal = cargarImagen("Carioca.png");
                 Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
                 FTCafe2.setIcon(new ImageIcon(imagenEscalada));
             }else{
@@ -308,7 +315,7 @@ class GUIMaquinaExpendedora extends JFrame{
     private class OyenteRetirarPro implements ActionListener{
         public void actionPerformed(ActionEvent event){
             CartelCafe2.setText("");
-            ImageIcon iconoOriginal = new ImageIcon("ImagenBlanco.png");
+            ImageIcon iconoOriginal = cargarImagen("ImagenBlanco.png");
             Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(250, 250, Image.SCALE_SMOOTH);
             FTCafe2.setIcon(new ImageIcon(imagenEscalada));
             habilitarBotonesPro();

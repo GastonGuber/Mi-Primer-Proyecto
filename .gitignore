@@ -1,0 +1,9 @@
+# Archivos compilados de Java
+*.class
+*.ctxt
+
+# Build local (javac/jar)
+build/
+
+# JAR empaquetado
+*.jar
