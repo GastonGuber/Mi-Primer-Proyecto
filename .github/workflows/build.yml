@@ -16,16 +16,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Configurar Java 8
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '8'
 
       - name: Compilar
-        run: javac -encoding UTF-8 -d build/out Cafetera/*.java
+        run: |
+          mkdir -p build/out
+          javac -encoding UTF-8 -d build/out Cafetera/*.java
 
       - name: Crear MANIFEST.MF
         run: |
